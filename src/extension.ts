@@ -23,7 +23,13 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
-		const selection = editor.selection;
+		const userSelection = editor.selection;
+		const startLine = userSelection.start.line;
+		const endLine = userSelection.end.line;
+
+		// Create a new selection range covering the entire lines
+		const selection = new vscode.Selection(startLine, 0, endLine, editor.document.lineAt(endLine).text.length);
+
 		const original = editor.document.getText(selection);
 		const ordered = indentSorter.perform(original);
 

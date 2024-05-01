@@ -10,7 +10,6 @@ suite('Extension Test Suite', () => {
 
 	test('indent-sorter should sort the selected text', async () => {
 		const content = `
-
 		# With Z comment
 		def Z method():
 		end
@@ -19,13 +18,9 @@ suite('Extension Test Suite', () => {
 		end
 
 		def A method():
-		end
-
-
-`;
+		end`;
 
 		const expectedText = `
-
 		def A method():
 		end
 
@@ -34,17 +29,14 @@ suite('Extension Test Suite', () => {
 
 		# With Z comment
 		def Z method():
-		end
-
-
-`;
+		end`;
 
 		// Open a new text document
 		const document = await vscode.workspace.openTextDocument({ content });
 		const editor = await vscode.window.showTextDocument(document);
 
 		// Define the text range to select
-		const selectionRange = new vscode.Range(0, 0, document.lineCount, 0);
+		const selectionRange = new vscode.Range(1, 2, document.lineCount - 1, 2);
 		editor.selection = new vscode.Selection(selectionRange.start, selectionRange.end);
 
 		// Execute the indentSort command
