@@ -11,11 +11,12 @@
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
+  "repository": "https://github.com/bettercallshao/indent-sorter",
   "contributes": {
     "commands": [
       {
-        "command": "indent-sorter.helloWorld",
-        "title": "Hello World"
+        "command": "indent-sorter.indentSort",
+        "title": "Indent Sort"
       }
     ]
   },
@@ -23,9 +24,10 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "pnpm run compile && pnpm run lint && pnpm run expected",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "expected": "rm -r ./out/test/indent-sorter && cp -r ./src/test/indent-sorter ./out/test/indent-sorter"
   },
   "devDependencies": {
     "@types/vscode": "^1.85.0",
