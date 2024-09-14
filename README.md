@@ -36,4 +36,6 @@ After
   z_is_not_a_method
 ```
 
+![demo](https://i.imgur.com/KjvZYsY.gif)
+
 More examples in [src/test/indent-sorter/](src/test/indent-sorter/)
