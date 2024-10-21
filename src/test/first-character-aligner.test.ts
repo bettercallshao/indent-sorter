@@ -2,11 +2,11 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { IndentSorter } from '../indent-sorter';
+import { FirstCharacterAligner } from '../first-character-aligner';
 
-suite('Indent Sorter Test Suite', () => {
-  const indentSorter = new IndentSorter();
-  const examples_dir = path.join(__dirname, 'indent-sorter');
+suite('First Character Aligner Test Suite', () => {
+  const firstCharacterAligner = new FirstCharacterAligner();
+  const examples_dir = path.join(__dirname, 'first-character-aligner');
 
   fs.readdir(examples_dir, (err, files) => {
     if (err) {
@@ -17,9 +17,10 @@ suite('Indent Sorter Test Suite', () => {
       const [note, _, ext] = file.split('.');
       const input = fs.readFileSync(path.join(examples_dir, `${note}.${ext}`), 'utf-8');
       const expected = fs.readFileSync(path.join(examples_dir, file), 'utf-8');
+      const target = input.split('\n')[0].slice(2).trim();
 
-      test(`indent-sorter should process ${note}.${ext}`, () => {
-        const result = indentSorter.perform(input);
+      test(`first-character-aligner should process ${note}.${ext}`, () => {
+        const result = firstCharacterAligner.perform(input, target);
         assert.strictEqual(result, expected);
       });
     });

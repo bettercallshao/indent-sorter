@@ -3,7 +3,7 @@
   "displayName": "Indent Sorter",
   "description": "Sort Indented Blocks",
   "publisher": "bettercallshao",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -18,6 +18,14 @@
       {
         "command": "indent-sorter.indentSort",
         "title": "Indent Sort"
+      },
+      {
+        "command": "indent-sorter.alignFirstCharacter",
+        "title": "Align First Character"
+      },
+      {
+        "command": "indent-sorter.alignAfterFirstCharacter",
+        "title": "Align After First Character"
       }
     ]
   },
@@ -28,7 +36,7 @@
     "pretest": "pnpm run compile && pnpm run lint && pnpm run expected",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "expected": "rm -r ./out/test/indent-sorter && cp -r ./src/test/indent-sorter ./out/test/indent-sorter"
+    "expected": "rm -rf ./out/test/indent-sorter && cp -r ./src/test/indent-sorter ./out/test/indent-sorter && rm -rf ./out/test/first-character-aligner && cp -r ./src/test/first-character-aligner ./out/test/first-character-aligner && rm -rf ./out/test/after-first-character-aligner && cp -r ./src/test/after-first-character-aligner ./out/test/after-first-character-aligner"
   },
   "devDependencies": {
     "@types/vscode": "^1.85.0",
